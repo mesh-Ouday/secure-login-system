@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Login</h2>
+
+    <input id="username" placeholder="Username">
+
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p class="result" id="result"></p>
+
+    <p>Don't have an account?</p>
+    <a href="register.html">Register here</a>
+
+</div>
+
+<script>
+
+    function login() {
+
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        fetch("/auth/login?username=" + username + "&password=" + password)
+            .then(response => response.text())
+            .then(data => {
+
+                document.getElementById("result").innerText = data;
+
+            });
+
+    }
+
+</script>
+
+</body>
+</html>
